@@ -1,6 +1,4 @@
-#################
-## Eclipse
-#################
+*.ncrunchsolution
 
 *.pydevproject
 .project
