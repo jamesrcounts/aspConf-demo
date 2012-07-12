@@ -13,28 +13,27 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CarDealership.Tests.Views
 {
+    public class MvcViewTest
+    {
+        public MvcViewTest()
+        {
+            PortFactory.MvcPort = 2080;
+        }
+    }
+
     [TestClass]
-    public class HomeViewsTest
+    public class HomeViewsTest : MvcViewTest
     {
         [TestMethod]
         public void TestIndexView()
         {
-            // Supply route to MVC action
-            PortFactory.MvcPort = 2080;
-            Func<ActionResult> actionDelegate = new HomeController().Index;  // This delegate is never invoked.  Its just a way to pass around metadata about the route
-
-            // Test action Result (RED)
-            MvcApprovals.VerifyMvcPage(actionDelegate);
-
-            // Review failing result
-            // Approve Result if appropriate
-            // Test Again (GREEN)
-            // Refactor
+            MvcApprovals.VerifyMvcPage(new HomeController().Index);
         }
 
         [TestMethod]
         public void TestAboutView()
         {
+            MvcApprovals.VerifyMvcPage(new HomeController().About);
         }
     }
 }
