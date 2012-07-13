@@ -7,17 +7,32 @@ using ApprovalTests.Asp;
 using ApprovalTests.Asp.Mvc;
 using ApprovalTests.Reporters;
 using CarDealership.Controllers;
+using CassiniDev;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 [assembly: UseReporter(typeof(FileLauncherReporter), typeof(TortoiseDiffReporter))]
 
 namespace CarDealership.Tests.Views
 {
-    public class MvcViewTest
+    [TestClass]
+    public class MvcViewTest : CassiniDevServer
     {
         public MvcViewTest()
         {
             PortFactory.MvcPort = 2080;
+            PortFactory.MvcPort++;
+        }
+
+        [TestCleanup]
+        public void Teardown()
+        {
+            this.StopServer();
+        }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            this.StartServer(MvcApplication.Directory, PortFactory.MvcPort, "/", "localhost");
         }
     }
 
