@@ -1,13 +1,11 @@
 Preflight Checklist
 ===
 * Ignore packages folder
-
 * Setup Demo Branch
 * Configure Build Server to monitor Demo Branch
 * Clear NuGet package cache
 * Warm up Visual Studio
-
-
+* Ignore *.ncrunchsolution
 
 Resources
 ===
@@ -35,48 +33,50 @@ Project Setup
 
 MVC3 Intranet Site
 ---
-
-* Works with any thing a webserver can render.
-* Must have test project
-	* ApprovalTests works with many popular frameworks
-	* I use MSTest
-* Enable package restore
+### Works fine with Internet Site
+### Any ViewEngine
+### Create MSTest project
+#### ApprovalTests works with many popular frameworks
+### Enable package restore
 
 Choose Web Server
 ---
 
-* ApprovalTests can approve any accessible web page.
-* You need to make your code acessible to ApprovalTests
-	* Cassini (easiest to get started)
-	* IIS
-	* IIS Express
-	* CassiniDev
+### ApprovalTests can approve any accessible web page.
+### Choose a server to make your views accessible to ApprovalTests
+* Cassini (easiest to get started)
+* IIS
+* IIS Express
+* CassiniDev
 * Testing Configuration Must Allow Anonymous Requests
 
 Run the Default Tests
 ---
 
-* 2 controller tests included in intranet template
-	* Run them in Visual Studio 
-	* Configure and Run NCrunch
-	* Commit, Push and Force Build
-* Closer look at controller tests
-	* MVC Makes controller and Model Tests Easy
-	* ViewResult != View
+### Intranet template includes two Controller tests
+* These pass in Visual Studio
+* Configure and Run NCrunch, They Pass
+* Commit, Push and Force Build
+
+### Closer look at controller tests
+### MVC Makes controller and Model Tests Easy
+### ViewResult != View
 
 View Tests
 ---
 
-* Above all else, users care about the view
-* We write the view, we should test the view
-	* Protection from Regression
-	* Design with feedback
-	* Executable specification
-* If we can make View tests easy, why not?
+### Users care about the view
+### We write the view, we should test the view
+* Protection from Regression
+* Design with feedback
+* Executable specification
+
+### Why not?  Too hard?  No interaction?
 
 ###Testing Views With ApprovalTests
 * `Install-Package ApprovalTests -projectname CarDealership.Tests`
 * Create `Views` folder to hold tests
+
 * Add new `Basic Unit Test` called `HomeViewsTest`
 * Import namespaces
 	* `using ApprovalTests.Asp;`
