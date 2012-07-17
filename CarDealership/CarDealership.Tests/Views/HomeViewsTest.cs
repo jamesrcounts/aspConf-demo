@@ -14,19 +14,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CarDealership.Tests.Views
 {
     [TestClass]
-    public class HomeViewsTest
+    public class HomeViewsTest : MvcViewTest
     {
         [TestMethod]
         public void TestIndexView()
         {
-            PortFactory.MvcPort = 24300;
-            Func<ActionResult> actionDelegate = new HomeController().Index;
-            MvcApprovals.VerifyMvcPage(actionDelegate);
+            MvcApprovals.VerifyMvcPage(new HomeController().Index);
         }
 
         [TestMethod]
         public void TestAboutView()
         {
+            MvcApprovals.VerifyMvcPage(new HomeController().About);
         }
 
         [TestMethod]
