@@ -178,8 +178,8 @@ View Tests
 * Run again.
 * Commit and Push and Force Build
 * Failure.  Pages contain user name in HTML, which is not the same on the server.
-	* Update Views to remove user name
-	* Approve.
+* Update Views to remove user name
+* Approve. Commit. Push. Force
 
 ###Working with Data
 * Tests work in three environments
