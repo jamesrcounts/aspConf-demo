@@ -9,7 +9,7 @@ using ApprovalTests.Reporters;
 using CarDealership.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-[assembly: UseReporter(typeof(FileLauncherReporter), typeof(TortoiseDiffReporter))]
+[assembly: UseReporter(typeof(FileLauncherReporter), typeof(KDiffReporter))]
 
 namespace CarDealership.Tests.Views
 {

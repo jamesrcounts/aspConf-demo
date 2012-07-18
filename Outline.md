@@ -135,57 +135,49 @@ View Tests
 * Test target is not visible from the build sever
 * Build server must be able to make target available when needed
 * Open source Web Server CassiniDev allows self-hosting in test.
-* Add CassiniDev support
-	* `Install-Package CassiniDev -ProjectName CarDealership.Tests`
-	* Update MvcViewTest base class.
-	* Import namespace `using CassiniDev;`
-	* Add `[TestClass]` attribute
-	* Inherit `CassiniDevServer`
-	* Add Empty `Setup` and `Teardown` methods.
-	* Decorate `Teardown` with `[TestCleanup]`
-	* Decorate 'Setup' with `[TestInitialize]`
-	* Implement `Teardown` *first* using this line: `this.StopServer()`
-	* Implement `Setup` with this line.
-		* `this.StartServer(@"..\..\..\CarDealership", PortFactory.MvcPort, "/", "localhost");`
-* Including CassiniDev breaks the NCrunch and VisualStudio tests
-	* Error indicates that our MVC port is in use.
-	* CassiniDev must use different port than Cassini
-	* I usually give CassiniDev MvcPort++
-* Test fails again.  
-	* Port number is part of the approved HTML.
-	* We can approve this.
-	* We also see that our result page is not styled.
-	* CSS is not part of the approved file.  
-		* Persistent web server can serve the file to us during approval
-		* CassiniDev shuts down before Chrome requests CSS.
-	* Using self-hosting creates a divide 
-		* Cassini/IIS Express better when designing with feedback.
-		* CassiniDev good for automation and regression protection.
+
+###Add CassiniDev support
+* `Install-Package CassiniDev -ProjectName CarDealership.Tests`
+* Update MvcViewTest base class.
+* Import namespace `using CassiniDev;`
+* Add `[TestClass]` attribute
+* Inherit `CassiniDevServer`
+* Add Empty `Setup` and `Teardown` methods.
+* Decorate `Teardown` with `[TestCleanup]`
+* Decorate 'Setup' with `[TestInitialize]`
+* Implement `Teardown` *first* using this line: `this.StopServer()`
+* Implement `Setup` with this line.
+	* `this.StartServer(@"..\..\..\CarDealership", PortFactory.MvcPort, "/", "localhost");`
+* Failure, NCrunch indicates MVCPort is in use. 
+* Same result in Visual Studio
+* CassiniDev needs different port than Cassini
+* `MvcPort++` for reasons that will become apparent.
+* ApprovalFailure--Port# is part of the HTML
+* We should approve the new port so the test will pass on CC.NET
+* Note that CSS is missing from rendered file
+* Self-hosting is a good solution for the build server
+* Self-hosting makes design feedback less useful
+* Switch back and forth as needed by controlling the port/host startup.
 * After approval, test passes in Visual Studio, fails in NCrunch
-	* NCrunch has 500 error
-	* In NCrunch Build environment, path to `CarDealership` is different.
-	* Test relies on bad assumption about the Build environment.
-	* NCrunch revals this assumption.
+* NCrunch has 500 error, path to `CarDealership` is different.
+* Test relies on bad assumption about the Build environment.
+* NCrunch revals this assumption.
 * Use `ApprovalUtilities` to dynamically locate the MvcApplication.
-	* Want `Setup` to look like this:
-		* `this.StartServer(MvcApplication.Directory, PortFactory.MvcPort, "/", "localhost");`
-	* Use Refactoring tool to create `Directory`
-		* Delete setter.
-		* Implement getter.
-			* `return PathUtilities.GetDirectoryForCaller();`
-	* `Install-Package ApprovalTests -ProjectName CarDealership`
-	* You need `ApprovalUtilities` but you also get `ApprovalTests`.
-		* You can delete `ApprovalTests` if it bothers you.
-	* Import namespace `ApprovalUtilities.Utilities`
+* `this.StartServer(MvcApplication.Directory, PortFactory.MvcPort, "/", "localhost");`
+* Use Refactoring tool to create `Directory`
+* `return PathUtilities.GetDirectoryForCaller();`
+* `Install-Package ApprovalTests -ProjectName CarDealership`
+* You need `ApprovalUtilities` but you also get `ApprovalTests`.
+* You can delete `ApprovalTests` if it bothers you.
+* Import namespace `ApprovalUtilities.Utilities`
 * NCrunch notices the new implementation 
-	* All tests pass in NCrunch.
+* All tests pass in NCrunch.
 * Run in Visual Studio
-	* May see 2 failures.
-	* Results reveal port conflict. 
-	* Race condition NCrunch vs Visual Studio.
-	* Run again.
-* Commit and Push
-* Failure because user name is different on the server.
+* May see 2 failures due to port conflict. 
+* Race condition NCrunch vs Visual Studio.
+* Run again.
+* Commit and Push and Force Build
+* Failure.  Pages contain user name in HTML, which is not the same on the server.
 	* Update Views to remove user name
 	* Approve.
 
