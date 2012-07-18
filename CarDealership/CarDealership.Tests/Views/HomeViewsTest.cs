@@ -14,32 +14,18 @@ using CarDealership.Controllers;
 namespace CarDealership.Tests.Views
 {
     [TestClass]
-    public class HomeViewsTest
+    public class HomeViewsTest : MvcViewTest
     {
         [TestMethod]
         public void IndexViewTest()
         {
-            // make our target available on a webserver ctrl-f5
-            // provide route to an action
-            PortFactory.MvcPort = 2683;
-            Func<ActionResult> actionDelegate = new HomeController().Index;
-            // just metadata
-            // homecontroller instance not used in test
-            // delegate is never invoked
-
-            // test it (RED)
-            MvcApprovals.VerifyMvcPage(actionDelegate);
-
-            // review
-            // approve if appropriate
-            // run again (GREEN)
-            // refactor
+            MvcApprovals.VerifyMvcPage(new HomeController().Index);
         }
 
         [TestMethod]
         public void AboutViewTest()
         {
-
+            MvcApprovals.VerifyMvcPage(new HomeController().About);
         }
 
         [TestMethod]

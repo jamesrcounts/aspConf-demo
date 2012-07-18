@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ApprovalUtilities.Utilities;
 
 namespace CarDealership
 {
@@ -12,6 +13,14 @@ namespace CarDealership
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static string Directory
+        {
+            get
+            {
+                return PathUtilities.GetDirectoryForCaller();
+            }
+        }
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
