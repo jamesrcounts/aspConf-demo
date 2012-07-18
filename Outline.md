@@ -6,6 +6,7 @@ Preflight Checklist
 * Configure Build Server to monitor Demo Branch
 * Clear NuGet package cache
 * Warm up Visual Studio
+* Delete practice folder
 
 Resources
 ===
