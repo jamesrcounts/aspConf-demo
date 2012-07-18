@@ -27,11 +27,12 @@ namespace CarDealership.Tests.Views
         {
             MvcApprovals.VerifyMvcPage(new HomeController().About);
         }
-
+#if DEBUG
         [TestMethod]
         public void CarsViewTest()
         {
-            // this will have some data
+            MvcApprovals.VerifyMvcPage(new HomeController().TestCars);
         }
+#endif 
     }
 }
