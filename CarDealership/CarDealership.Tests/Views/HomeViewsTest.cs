@@ -31,7 +31,7 @@ namespace CarDealership.Tests.Views
         [TestMethod]
         public void CarsViewTest()
         {
-            // will have some data, thats interesting
+            MvcApprovals.VerifyMvcPage(new HomeController().TestCars);
         }
     }
 }

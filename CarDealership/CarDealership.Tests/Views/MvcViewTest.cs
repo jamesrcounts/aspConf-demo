@@ -26,7 +26,7 @@ namespace CarDealership.Tests.Views
         [TestInitialize]
         public void Setup()
         {
-            this.StartServer(MvcApplication.Directory, PortFactory.MvcPort, "/", "localhost");
+           this.StartServer(MvcApplication.Directory, PortFactory.MvcPort, "/", "localhost");
         }
     }
 }
