@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CarDealership.Models;
+using ApprovalUtilities.Asp.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace CarDealership.Controllers
 {
@@ -21,9 +23,10 @@ namespace CarDealership.Controllers
             this.repository = repository;
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private ViewResult Cars(IEnumerable<Car> theData)
         {
-            return View("Cars", theData);
+            return View(theData).Explicit();
         }
 
         public ViewResult Cars()
