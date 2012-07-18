@@ -18,7 +18,7 @@ namespace CarDealership.Tests.Views
     {
         [TestMethod]
         public void IndexViewTest()
-        {
+        {            
             MvcApprovals.VerifyMvcPage(new HomeController().Index);
         }
 
