@@ -41,6 +41,9 @@
     <Reference Include="ApprovalUtilities">
       <HintPath>..\packages\ApprovalTests.1.9\lib\ApprovalUtilities.dll</HintPath>
     </Reference>
+    <Reference Include="CassiniDev4-lib">
+      <HintPath>..\packages\CassiniDev.4.0\lib\net40\CassiniDev4-lib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -60,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Views\HomeViewsTest.cs" />
+    <Compile Include="Views\MvcViewTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

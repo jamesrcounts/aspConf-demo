@@ -13,19 +13,18 @@ using CarDealership.Controllers;
 namespace CarDealership.Tests.Views
 {
     [TestClass]
-    public class HomeViewsTest
+    public class HomeViewsTest : MvcViewTest
     {
         [TestMethod]
         public void IndexViewTest()
         {
-            PortFactory.MvcPort = 43453;
             MvcApprovals.VerifyMvcPage(new HomeController().Index);
         }
 
         [TestMethod]
         public void AboutViewTest()
         {
-
+            MvcApprovals.VerifyMvcPage(new HomeController().About);
         }
 
         [TestMethod]
