@@ -33,6 +33,6 @@ namespace CarDealership.Tests.Views
         {
             MvcApprovals.VerifyMvcPage(new HomeController().TestCars);
         }
-    }
 #endif
+    }
 }
