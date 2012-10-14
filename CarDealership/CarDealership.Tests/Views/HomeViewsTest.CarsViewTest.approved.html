@@ -2,7 +2,7 @@
 <html>
 <head><base href="http://localhost:50979/Home">
     <meta charset="utf-8" />
-    <title>Home Page</title>
+    <title>Cars</title>
     <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
     <script src="/Scripts/modernizr-2.5.3.js" type="text/javascript"></script>
@@ -26,10 +26,60 @@
         </header>
         <section id="main">
             
-<h2>Welcome to ASP.NET MVC!</h2>
+
+<h2>Cars</h2>
+
 <p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+    <a href="/Home/Create">Create New</a>
 </p>
+<table>
+    <tr>
+        <th>
+            Make
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Year
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            VW
+        </td>
+        <td>
+            Passat
+        </td>
+        <td>
+            2002
+        </td>
+        <td>
+            <a href="/Home/Edit">Edit</a> |
+            <a href="/Home/Details">Details</a> |
+            <a href="/Home/Delete">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Honda
+        </td>
+        <td>
+            Fit
+        </td>
+        <td>
+            2007
+        </td>
+        <td>
+            <a href="/Home/Edit">Edit</a> |
+            <a href="/Home/Details">Details</a> |
+            <a href="/Home/Delete">Delete</a>
+        </td>
+    </tr>
+
+</table>
 
         </section>
         <footer>

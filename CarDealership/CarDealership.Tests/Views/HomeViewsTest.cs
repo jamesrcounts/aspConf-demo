@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using ApprovalTests.Asp;
-using ApprovalTests.Asp.Mvc;
+﻿using ApprovalTests.Asp.Mvc;
 using ApprovalTests.Reporters;
 using CarDealership.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,25 +6,27 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CarDealership.Tests.Views
 {
     [TestClass]
-    [UseReporter(typeof(TortoiseDiffReporter), typeof(FileLauncherWithDelayReporter))]
+    [UseReporter(typeof(DiffReporter), typeof(FileLauncherWithDelayReporter))]
     public class HomeViewsTest : MvcViewTest
     {
-        [TestMethod]
-        public void IndexViewTest()
-        {
-            MvcApprovals.VerifyMvcPage(new HomeController().Index);
-        }
-
         [TestMethod]
         public void AboutViewTest()
         {
             MvcApprovals.VerifyMvcPage(new HomeController().About);
         }
 
+#if DEBUG
         [TestMethod]
         public void CarsViewTest()
         {
-            // some test with data, should be ineresting
+            MvcApprovals.VerifyMvcPage(new HomeController().TestCars);
+        }
+#endif
+
+        [TestMethod]
+        public void IndexViewTest()
+        {
+            MvcApprovals.VerifyMvcPage(new HomeController().Index);
         }
     }
 }
