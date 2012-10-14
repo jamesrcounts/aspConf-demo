@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using ApprovalTests.Asp;
 using ApprovalTests.Asp.Mvc;
 using ApprovalTests.Reporters;
 using CarDealership.Controllers;
@@ -8,31 +9,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CarDealership.Tests.Views
 {
     [TestClass]
-    [UseReporter(typeof(TortoiseDiffReporter), typeof(FileLauncherReporter))]
-    public class HomeViewsTest
+    [UseReporter(typeof(TortoiseDiffReporter), typeof(FileLauncherWithDelayReporter))]
+    public class HomeViewsTest : MvcViewTest
     {
         [TestMethod]
         public void IndexViewTest()
         {
-            // make the view available
-
-            // provide route
-            ApprovalTests.Asp.PortFactory.MvcPort = 50978;
-            var controller = new HomeController();
-            Func<ActionResult> method = controller.Index;
-
-            // test it (red)
-            MvcApprovals.VerifyMvcPage(method);
-
-            // review it approve if appropriate
-            // test it (green)
-            // refactor.
+            MvcApprovals.VerifyMvcPage(new HomeController().Index);
         }
 
         [TestMethod]
         public void AboutViewTest()
         {
-            // aboutViewTest
+            MvcApprovals.VerifyMvcPage(new HomeController().About);
         }
 
         [TestMethod]
